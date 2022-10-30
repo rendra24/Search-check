@@ -160,58 +160,49 @@
                 <input type="text" style="width: 100%;padding: 8px 10px;border:none" onkeyup="filterFunction()"
                     id="myInput" placeholder="Search...">
             </li>
-            <li class="item">
+            <li class="item" onclick="getValue('HTML & CSS')">
                 <span class="checkbox">
                     <i class="fa-solid fa-check check-icon"></i>
                 </span>
                 <span class="item-text">HTML & CSS</span>
             </li>
-            <li class="item">
+            <li class="item" onclick="getValue('Bootstrap')">
                 <span class="checkbox">
                     <i class="fa-solid fa-check check-icon"></i>
                 </span>
                 <span class="item-text">Bootstrap</span>
             </li>
-            <li class="item">
+            <li class="item" key="JavaScript" onclick="getValue('JavaScript')">
                 <span class="checkbox">
                     <i class="fa-solid fa-check check-icon"></i>
                 </span>
                 <span class="item-text">JavaScript</span>
             </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Node.Js</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">React JS</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Mango DB</span>
-            </li>
         </ul>
     </div>
 
+
     <!-- JavaScript -->
     <!--<script src="js/script.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
     const selectBtn = document.querySelector(".select-btn"),
         items = document.querySelectorAll(".item");
+
+    const tampung_value = document.getElementById("tampungan");
 
     selectBtn.addEventListener("click", () => {
         selectBtn.classList.toggle("open");
     });
 
     items.forEach(item => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", (e) => {
             item.classList.toggle("checked");
+            console.log(e);
+            // tampung_value.value += e.target.innerText + '|';
+
 
             let checked = document.querySelectorAll(".checked"),
                 btnText = document.querySelector(".btn-text");
@@ -240,6 +231,22 @@
                 item[i].style.display = "none";
             }
         }
+    }
+
+    const array_text = [];
+
+    function getValue(text) {
+
+
+        let index = array_text.indexOf(text);
+        if (index >= 0) {
+            array_text.splice(index, 1);
+        } else {
+            array_text.push(text);
+        }
+
+        var json_array = JSON.stringify(array_text);
+        console.log(json_array);
     }
     </script>
 </body>
