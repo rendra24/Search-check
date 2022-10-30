@@ -160,43 +160,67 @@
                 <input type="text" style="width: 100%;padding: 8px 10px;border:none" onkeyup="filterFunction()"
                     id="myInput" placeholder="Search...">
             </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">HTML & CSS</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Bootstrap</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">JavaScript</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Node.Js</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">React JS</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Mango DB</span>
-            </li>
+            <?php 
+                $select_location = array();
+                foreach($mobil as $key => $value) : 
+            ?>
+                    <li class="item">
+                        <span class="checkbox">
+                            <i class="fa-solid fa-check check-icon"></i>
+                        </span>
+                        <span class="item-text"><?= $value['location'] ?></span>
+                    </li>
+            <?php 
+                if ($value['location'] == true){
+                    $select_location = $value['location'];
+                }
+                endforeach; 
+            ?>
         </ul>
+    </div>
+
+    <form class="form-group" method="post" action="<?= base_url('search') ?>">
+                <input type="text" name="location" />
+                <button type="submit"> OK </button>
+    </form>
+
+    <div>
+        <table>
+            <thead>
+                <tr>Name</tr>
+                <tr>Model</tr>
+                <tr>Type</tr>
+                <tr>Location</tr>
+                <tr>Year</tr>
+                <tr>CC</tr>
+                <tr>Transmission</tr>
+                <tr>Price</tr>
+                <tr>Fuel</tr>
+                <tr>Notes</tr>
+                <tr>Type Vehicle</tr>
+                <tr>Url</tr>
+                <tr>Concrate</tr>
+            </thead>
+            <tbody>
+                <?php foreach($mobil as $key => $value) : ?>
+                    <tr>
+                        <td> <?= $value['name'] ?> </td>
+                        <td> <?= $value['model'] ?> </td>
+                        <td> <?= $value['type'] ?> </td>
+                        <td> <?= $value['location'] ?> </td>
+                        <td> <?= $value['year'] ?> </td>
+                        <td> <?= $value['cc'] ?> </td>
+                        <td> <?= $value['transmission'] ?> </td>
+                        <td> <?= $value['price'] ?> </td>
+                        <td> <?= $value['fuel'] ?> </td>
+                        <td> <?= $value['notes'] ?> </td>
+                        <td> <?= $value['type_vehicle'] ?> </td>
+                        <td> <?= $value['url'] ?> </td>
+                        <td> <?= $value['concate'] ?> </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
     <!-- JavaScript -->
