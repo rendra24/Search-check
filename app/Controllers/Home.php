@@ -16,10 +16,19 @@ class Home extends BaseController
                     $explode[$key] = $value;
                 }
                 $model = Model('Data');
-                $data['mobil'] = $model->whereIn('location', $explode)->find();
+                $data_mobil = $model->whereIn('location', $explode)->find();
+                $data = [
+                    'mobil' => $data_mobil->paginate(10),
+                    'pager' => $model->pager,
+                ];
+
+                $data['mobil'] = $data_mobil->paginate(10, 'mobil');
+                $data['pager'] = $model->pager;
                 
             }else{
-                $data['mobil'] = $model->findAll();
+                
+                $data['mobil'] = $model->paginate(10, 'mobil');
+                $data['pager'] = $model->pager;
             }
         return view('welcome_message',$data);
     }
